@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="Quick.css">
+    <meta charset=utf-8 />
+    <title>Notice Me</title>
+</head>
+
+<body class="flexscreen">
+    <script src="FBGraphAPI.js"></script>
+    <!-- Create an overlay panel here to display for onclick and have it shift everything over to the side, it can either fade out or just be on the side to allow people to add stuff or something like that. -->
+    <header>
+        <div id="taskbar" class="taskbar">
+            <div class="taskbarButton" id="AddNoticeBox" onclick="AddNoticeBox()">
+                <p>Add Notice</p>
+            </div>
+        </div>
+        <div id="accSettings" class="accSettings">
+            <div id="profileDiv" onclick="dropDownLogin()">
+                <div id="profilePictureDiv">
+                    <img id="profilePicture" src="https://lh3.googleusercontent.com/-KxjQ8L0ryC8/AAAAAAAAAAI/AAAAAAAAAAA/AAyYBF6JsrQ-7uTR6KMS6Ct3co1nyw-FBw/s64-c-mo/photo.jpg">
+                    <div id="username">Username</div>
+                </div>
+            </div>
+            
+            <div id="loginDropDown" onclick="dropDownLogin()">Stuff
+                <form id="usernameBox" placeholder="Username"></form>
+                <form id="passwordBox" placeholder="Password"></form>
+                <input type="submit" id="submitUserInfo">
+            </div>
+            
+<!--
+            <div id="signUp">Sign up</div>
+            <div id="signUpDropDown"></div>
+-->
+        </div>
+    </header>
+    <main id="main">
+        <img src="https://static.pexels.com/photos/55787/pexels-photo-55787.jpeg" id="backgroundImage"/>
+        <div id="noticeBoxHold"></div>
+        <!--NoticeBox here-->
+        <!--need to implement infinite scroll for this-->
+    </main>
+    <script>
+// Only works after `FB.init` is called
+function myFacebookLogin() {
+  FB.login(function(){
+  // Note: The call will only work if you accept the permission request
+  FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+}, {scope: 'publish_actions'});
+}
+</script>
+<button onclick="myFacebookLogin()">Login with Facebook</button>
+    <footer>Footer Bar</footer>
+    <script src="Quick.js"></script>
+</body>
+
+</html>
